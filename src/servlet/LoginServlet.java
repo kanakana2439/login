@@ -34,13 +34,13 @@ public class LoginServlet extends HttpServlet{
 		request.setCharacterEncoding("UTF-8");
 		String userId = request.getParameter("USERID");
 		String pass = request.getParameter("PASS");
-		
+
 		boolean result = true;
-		
-		//userIdとpassが25文字を超えていないか確認
-		if(userId.length() > 26  ||pass.length() > 26 )
+
+		//userIdとpassが10文字を超えていないか確認
+		if(userId.length() > 10  ||pass.length() > 10 )
 		{result = false;}
-		
+
 		//入力文字が25文字以下の場合、ログイン処理の実行
 		if(result){
 			Login login =new Login(userId,pass);
@@ -65,10 +65,10 @@ public class LoginServlet extends HttpServlet{
 			request.setAttribute("userId", userId);
 			request.setAttribute("errorMsg","ユーザーIDまたはパスワードが違います。");
 			//フォワード
-			RequestDispatcher dispatcher = 
+			RequestDispatcher dispatcher =
 					request.getRequestDispatcher("//WEB-INF/jsp/login.jsp");
 			dispatcher.forward(request, response);
-			
+
 		}
 
 
